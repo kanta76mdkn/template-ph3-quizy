@@ -19,7 +19,14 @@
 //     return '<html><body><h1>Hello</h1><p>This is sample page.
 //         </p></body></html>';
 // });
-Route::get('hello', 'HelloController@index');
+
+// Route::get('hello',function(){
+//     return view('hello.index');
+// });
+
+Route::get('hello','HelloController@index');
+Route::post('hello','HelloController@post');
+
 // Route::get('hello/other', 'HelloController@other');
 
 ?>
