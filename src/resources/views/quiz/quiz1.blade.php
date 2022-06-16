@@ -1,15 +1,4 @@
-
-
-@extends('layouts.helloapp')
-
-@section('title','Index')
-
-@section('menubar')
-    @parent
-    インデックスページ
-@endsection
-
-@section('content')
+<!DOCTYPE html>
 <html>
     <head>
     <title>quiz1</title>        
@@ -36,12 +25,3 @@
         </ul>
     </body>
 </html>
-
-@endsection
-
-@section('footer')
-    copyright 2020 tuyano.
-@endsection
-
-
-
