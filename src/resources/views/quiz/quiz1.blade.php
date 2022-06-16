@@ -2,7 +2,7 @@
 <html>
     <head>
     <title>quiz1</title>        
-    <style></style>
+    <link rel="stylesheet" href="/style.css">
     </head>
     <body>
         <h1>１．この地名は何て読む？：高輪</h1>

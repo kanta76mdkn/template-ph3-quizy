@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <title>quiz2</title>        
-    <style></style>
+    <title>quiz1</title>        
+    <link rel="stylesheet" href="/style.css">
     </head>
     <body>
         <h1>１．この地名は何て読む？：向洋</h1>
