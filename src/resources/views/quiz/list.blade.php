@@ -8,13 +8,9 @@
     </head>
 
 <body>
-    <!-- <div class="links">
-        <a href="./quiz/1">東京</a>
-        <a href="./quiz/2">広島</a>
-    </div>   -->
     @foreach ($links as $link)
     <div>
-        <a href="quiz/{{$link->id}}">{{$link->name}}</a>
+        <a href="{{route('quiz',['id' => $link->id ])}}">{{$link->name}}</a>
     </div>
     @endforeach 
 </body>

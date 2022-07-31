@@ -22,9 +22,9 @@ Route::get('/', 'QuizController@index');
 //     return view('hello.index');
 // });
 
-Route::get('quiz/1', 'QuizController@quiz1');
+Route::get('quiz/{id}', 'QuizController@quiz')->name('quiz');
 // quiz/1があったらquizycontrollerでquiz1っていう処理を実行してください
-Route::get('quiz/2', 'QuizController@quiz2');
+// Route::get('quiz/2', 'QuizController@quiz2');
 
 
 // Route::get('hello/other', 'HelloController@other');
