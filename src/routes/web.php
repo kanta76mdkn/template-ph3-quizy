@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/list', function () {
-    return view('quiz.list');
-});
+Route::get('/', 'QuizController@index');
 
 // Route::get('hello', function () {
 //     return '<html><body><h1>Hello</h1><p>This is sample page.
@@ -24,9 +22,10 @@ Route::get('/list', function () {
 //     return view('hello.index');
 // });
 
-Route::get('quiz/1', 'QuizController@quiz1');
+Route::get('quiz/{id}', 'QuizController@quiz')->name('quiz');
 // quiz/1があったらquizycontrollerでquiz1っていう処理を実行してください
-Route::get('quiz/2', 'QuizController@quiz2');
+// Route::get('quiz/2', 'QuizController@quiz2');
+
 
 // Route::get('hello/other', 'HelloController@other');
 
