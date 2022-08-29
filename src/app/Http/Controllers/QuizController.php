@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Question;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -25,21 +26,33 @@ class QuizController extends Controller
     }
     public function quiz($id)
     {
-        $questions = DB::table('questions')->where('big_question_id',$id)
-            ->get();
-        $choices = DB::table('questions')
+        // $questions = DB::table('questions')
+        //     ->where('big_question_id',$id)
+        //     ->choices()
+        //     ->get();
+        // $choices = DB::table('questions')
+        //     ->join('choices', 'choices.question_id', '=', 'questions.id')
+        //     ->where('big_question_id', '=', $id)
+        //     ->get()
+        //     ->groupBy('question_id');
+
+
+
+        $questions = Question::find($id)->choices;
+        $choices['choices'] = Question::find($choice['id'])->choices;
+
+        dd($questions);
+        // dd($choices);
+        $answers = DB::table('questions')
             ->join('choices', 'choices.question_id', '=', 'questions.id')
-            ->where('big_question_id', '=', $id)
-            ->get()
-            ->groupBy('question_id'); // コレクションのgroupByなので勘違いしないようにお願いします
-// dd($questions);
-// dd($choices);
+            ->where('valid', '=', 1)
+            // ->select('big_questions_id','name')
+            ->get();
+            // dd($answers);
 
-        return view('quiz.quiz', compact('questions','choices'));        // ->join('choices', 'choices.question_id', '=', 'questions.id')
+        return view('quiz.quiz', compact('questions'));        // ->join('choices', 'choices.question_id', '=', 'questions.id')
 
-        // ->where('questions.id', '=', $id)
-        // ->get()
-        // ->groupBy('question_id'); // コレクションのgroupByなので勘違いしないようにお願いします
+ 
 
     }
     // 選択肢？回答？をjoinして選択肢分の設問を取得 (絞り込み条件に大問1を今回は指定) 選択肢 = choices, 設問 = questions, 大問 = big_questions

@@ -12,13 +12,19 @@
     <img src="{{asset('/img/'.$question->image)}}" alt="">
 
     <!-- ダブルクオートの中だったら変数展開できるよ -->
-    @foreach($choices as $choice)
+    @foreach($question->choices as $choice)
     <!-- choices Tableの中は配列で帰ってきている
     　→配列番号ごとに返ってくるようにした。
     　→choices Tableには番号しか元々なかった
     　→番号の中に入っている情報を持ってくるようにした。 -->
-    <div>{{$choice[ $loop->index ]->name}}</div>
+    <div>{{$choice->name}}</div>
     @endforeach
     @endforeach
+
+ 
+
+
+
+
 </body>
 </html>
