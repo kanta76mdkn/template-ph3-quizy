@@ -38,10 +38,12 @@ class QuizController extends Controller
 
 
 
-        $questions = Question::find($id)->choices;
-        $choices['choices'] = Question::find($choice['id'])->choices;
+        $questions = Question::find($id);
+        $q = Question::where('id', $id)->get();;
 
-        dd($questions);
+        // dd($questions->choices, $questions->choices());
+        dd($questions, $q);
+
         // dd($choices);
         $answers = DB::table('questions')
             ->join('choices', 'choices.question_id', '=', 'questions.id')
