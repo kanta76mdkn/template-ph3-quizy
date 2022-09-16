@@ -24,9 +24,5 @@ Route::get('/', 'QuizController@index');
 
 Route::get('quiz/{id}', 'QuizController@quiz')->name('quiz');
 // quiz/1があったらquizycontrollerでquiz1っていう処理を実行してください
-// Route::get('quiz/2', 'QuizController@quiz2');
-
-
-// Route::get('hello/other', 'HelloController@other');
 
 ?>
