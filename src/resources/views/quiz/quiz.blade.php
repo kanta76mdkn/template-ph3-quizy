@@ -10,17 +10,17 @@
     <div class="main">
 
         <div class="quiz">
-            
+
             @foreach ($questions as $index => $question)
                 <h1>{{ $index + 1 }}.この地名はなんて読む?</h1>
 
                 <img src="{{ '/img/' . $question->image }}" alt="">
                 <ul>
                     @foreach ($question->choices as $i => $choice)
-                        <li class="answerlist" id="answerlist_{{ $choice->question_id }}_{{ $i+ 1}}" name = "answerlist_{{ $choice->question_id }}"
+                        <li class="answerlist" id="answerlist_{{ $choice->question_id }}_{{ $i + 1 }}"
+                            name="answerlist_{{ $choice->question_id }}"
                             onclick="clickfunction({{ $choice->question_id }}, {{ $i + 1 }},{{ $choice->valid }})">
                             {{ $choice->name }}</li>
-
                     @endforeach
 
                     <li id="answerbox_{{ $choice->question_id }}" class="answerbox">
