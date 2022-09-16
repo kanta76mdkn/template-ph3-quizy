@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Question;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\BigQuestion;
+use App\Choice;
 
 use Illuminate\Support\Facades\DB;
 
@@ -19,45 +21,18 @@ class QuizController extends Controller
         // list.blade.php で foreach を回し問題リストを表示させる
         // 階層下がるときは.を使う
         return view('quiz.list', compact('links'));
-
-
-        // $choices = DB::table('choices')->get();
-        // return view('quiz/quiz1', ['choices' => $choices]);
     }
+
+
+
     public function quiz($id)
-    {
-        // $questions = DB::table('questions')
-        //     ->where('big_question_id',$id)
-        //     ->choices()
-        //     ->get();
-        // $choices = DB::table('questions')
-        //     ->join('choices', 'choices.question_id', '=', 'questions.id')
-        //     ->where('big_question_id', '=', $id)
-        //     ->get()
-        //     ->groupBy('question_id');
+    {   
+        // eloquentでデータを取得（問題）
+        $questions = Question::where('big_question_id', '=', $id)->get();
+        
+        // 答えも取得
+        $answers = DB::table('choices')->where('valid','=', 1)->get(); 
 
-
-
-        $questions = Question::find($id);
-        $q = Question::where('id', $id)->get();;
-
-        // dd($questions->choices, $questions->choices());
-        dd($questions, $q);
-
-        // dd($choices);
-        $answers = DB::table('questions')
-            ->join('choices', 'choices.question_id', '=', 'questions.id')
-            ->where('valid', '=', 1)
-            // ->select('big_questions_id','name')
-            ->get();
-            // dd($answers);
-
-        return view('quiz.quiz', compact('questions'));        // ->join('choices', 'choices.question_id', '=', 'questions.id')
-
- 
-
+        return view('quiz.quiz', compact('questions', 'answers'));
     }
-    // 選択肢？回答？をjoinして選択肢分の設問を取得 (絞り込み条件に大問1を今回は指定) 選択肢 = choices, 設問 = questions, 大問 = big_questions
-
-    // 取得した後に設問毎にグルーピングしたリストに加工
 }
