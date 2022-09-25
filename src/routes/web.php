@@ -11,18 +11,23 @@
 |
 */
 
-Route::get('/', 'QuizController@index');
 
-// Route::get('hello', function () {
-//     return '<html><body><h1>Hello</h1><p>This is sample page.
-//         </p></body></html>';
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
-// Route::get('hello',function(){
-//     return view('hello.index');
-// });
+
+Route::get('/admin/quiz', 'AdminController@index');
+
+
+Route::get('/quiz', 'QuizController@index');
+
+
 
 Route::get('quiz/{id}', 'QuizController@quiz')->name('quiz');
 // quiz/1があったらquizycontrollerでquiz1っていう処理を実行してください
 
-?>
+Auth::routes();
+
+// home画面に行く前にログインをしてください（->middleware('Auth')）
+Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
