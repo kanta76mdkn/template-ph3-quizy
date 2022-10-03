@@ -31,6 +31,7 @@
         </div>
     </div>
 
+    
     <script src="{{ asset('/quizy.js') }}"></script>
 
 
