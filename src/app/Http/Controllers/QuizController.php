@@ -23,16 +23,13 @@ class QuizController extends Controller
         return view('quiz.list', compact('links'));
     }
 
-
-
+    // クイズ表示用
     public function quiz($id)
-    {   
+    {
         // eloquentでデータを取得（問題）
         $questions = Question::where('big_question_id', '=', $id)->get();
-        
         // 答えも取得
-        $answers = DB::table('choices')->where('valid','=', 1)->get(); 
-
+        $answers = DB::table('choices')->where('valid', '=', 1)->get();
         return view('quiz.quiz', compact('questions', 'answers'));
     }
 }
