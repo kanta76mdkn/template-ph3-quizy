@@ -25,7 +25,7 @@
 
                     <li id="answerbox_{{ $choice->question_id }}" class="answerbox">
                         <span id="answertext_{{ $choice->question_id }}"></span><br>
-                        <span>正解は{{  $question->choices[0]->name }} </span>です！</span>
+                        <span>正解は{{ $question->choices[0]->name }} </span>です！</span>
                 </ul>
             @endforeach
         </div>
