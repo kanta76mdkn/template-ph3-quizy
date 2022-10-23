@@ -29,6 +29,19 @@ Route::post('/admin/big_questions/edit/{id}', 'AdminController@update_title');
 Route::get('/admin/big_questions/delete/{id}', 'AdminController@delete_title');
 Route::post('/admin/big_questions/delete/{id}', 'AdminController@remove_title');
 
+
+// 編集画面用　小問
+Route::get('/admin/small_questions/{id}', 'AdminController@question');
+Route::get('/admin/small_questions/{id}', 'AdminController@add_question');
+Route::post('/admin/small_questions/{id}', 'AdminController@create_question');
+
+
+
+
+
+
+
+
 // ユーザー画面用
 Route::get('/quiz', 'QuizController@index');
 Route::get('quiz/{id}', 'QuizController@quiz')->name('quiz');

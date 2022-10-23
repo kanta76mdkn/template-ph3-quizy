@@ -16,11 +16,7 @@ class AdminController extends Controller
     // 大問表示用
     public function index()
     {
-        // big_questions テーブルのデータを全て取得し $links に格納
-        // getがselectみたいなもん
         $big_questions = DB::table('big_questions')->get();
-        // list.blade.php で foreach を回し問題リストを表示させる
-        // 階層下がるときは.を使う
         return view('admin.big_questions.index', compact('big_questions'));
     }
 
@@ -34,7 +30,6 @@ class AdminController extends Controller
         $big_question = new BigQuestion;
         $big_question->id = BigQuestion::max('id') + 1;
         $big_question->name = $request->input('big_question');
-        $big_question->hide = 0;
         $big_question->save();
         return redirect('/admin/big_questions');
     }
@@ -64,11 +59,48 @@ class AdminController extends Controller
     public function remove_title($id)
     {
         $big_question = BigQuestion::find($id);
-        $big_question->hide = 1;
-        $big_question->save();
+        $big_question->delete();
+        // $big_question->save();
         return redirect('/admin/big_questions');
     }
 
+    // 小問表示用
+    public function question($id)
+    {
+        // eloquentでデータを取得（問題）
+        $questions = Question::where('big_question_id', '=', $id)->get();
+        // 答えも取得
+        return view('admin.small_questions.list', compact('questions'));
+    }
+
+    public function add_question(Request $request)
+    {
+        return view('admin.small_questions.add');
+    }
+
+    public function create_question(Request $request, $id)
+    {
+        $big_question = BigQuestion::find($id);
+        $question = new Question;
+        $question->big_question_id = $id;
+
+        if ($file = $request->image) {
+            $fileName = time() . $file->getClientOriginalName();
+            $target_path = public_path('img/');
+            $file->move($target_path, $fileName);
+        } else {
+            $fileName = "";
+        }
+
+        $question->image = $fileName;
+        $question->id = Question::max('id') + 1;
+        $question->save();
+        return redirect('/admin/small_questions/'.$big_question->id);
+    }
+
+
     
+
+
 
 }

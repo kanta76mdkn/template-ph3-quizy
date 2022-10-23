@@ -9,12 +9,6 @@
 </head>
 
 <body>
-    <form action="/admin/big_questions/add" method="post" enctype="multipart/form">
-        @csrf
-        <input type="text" name="big_question">
-        <input type="submit" value="追加">
-    </form>
-
     <form action="/admin/big_questions/delete/{{ $big_question->id }}" method="post">
         <table>
             @csrf
