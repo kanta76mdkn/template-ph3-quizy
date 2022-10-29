@@ -20,7 +20,8 @@
                 @foreach ($questions as $question)
                     <div class="list_content" id="{{ $question->id }}">
                         <div class="list_quiz--big">
-                            <h1>問題：{{ $loop->iteration }}</h1>
+                            <a href="/admin/choices/list/{{ $question->id}}">問題：{{ $loop->iteration }}</a>
+                            <a href=""></a>
                             <img src="{{ '/img/' . $question->image }}" alt="">
                         </div>
                         <div class="list_actions--big">
@@ -32,7 +33,7 @@
                 <input type="hidden" id="list-ids" name="list-ids" />
                 <div class="list_content">
                     <div class="list_quiz">
-                        <a href="/admin/small_questions/add/{{ $big_question->id }}">＋設問を追加</a>
+                        <a href="/admin/small_questions/{{ $big_question_id }}/add">＋設問を追加</a>
                     </div>
                     <div class="list_actions">
                         <button id="submit">更新</button>

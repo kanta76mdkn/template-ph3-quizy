@@ -30,10 +30,24 @@ Route::get('/admin/big_questions/delete/{id}', 'AdminController@delete_title');
 Route::post('/admin/big_questions/delete/{id}', 'AdminController@remove_title');
 
 
-// 編集画面用　小問
+// 編集画面用　設問
 Route::get('/admin/small_questions/{id}', 'AdminController@question');
-Route::get('/admin/small_questions/{id}', 'AdminController@add_question');
-Route::post('/admin/small_questions/{id}', 'AdminController@create_question');
+Route::get('/admin/small_questions/{id}/add', 'AdminController@add_question');
+Route::post('/admin/small_questions/{id}/add', 'AdminController@create_question')->name('question_add');
+
+Route::get('/admin/small_questions/edit/{id}', 'AdminController@edit_question');
+Route::post('/admin/small_questions/edit/{id}', 'AdminController@update_question')->name('question_update');
+
+Route::get('/admin/small_questions/delete/{id}', 'AdminController@delete_question');
+Route::post('/admin/small_questions/delete/{id}', 'AdminController@remove_question')->name('question_remove');
+
+
+// 編集画面用　選択肢
+Route::get('/admin/choices/list/{id}', 'AdminController@choice');
+Route::get('/admin/choices/add', 'AdminController@add_choice');
+Route::post('/admin/choices/add', 'AdminController@create_choice');
+
+
 
 
 
