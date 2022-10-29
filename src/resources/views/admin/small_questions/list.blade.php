@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ asset('/admin.css') }}">
-    <title>大問編集ページ</title>
+    <title>小問編集ページ</title>
 </head>
 
 <body>
@@ -17,25 +17,29 @@
                 <div class="list_labels--right">操作</div>
             </div>
             <div class="sortable">
-                @foreach ($big_questions as $big_question)
-                    <div class="list_content" id="{{ $big_question->id }}">
-                        <div class="list_quiz">
-                            <a href="/admin/small_questions/{{ $big_question->id }}">{{ $big_question->name }}</a>
+                @foreach ($questions as $question)
+                    <div class="list_content" id="{{ $question->id }}">
+                        <div class="list_quiz--big">
+                            <h1>問題：{{ $loop->iteration }}</h1>
+                            <img src="{{ '/img/' . $question->image }}" alt="">
                         </div>
-                        <div class="list_actions">
-                            <a href="/admin/big_questions/edit/{{ $big_question->id }}">大問名を編集</a>
-                            <a href="/admin/big_questions/delete/{{ $big_question->id }}">大問を削除</a>
+                        <div class="list_actions--big">
+                            <a href="/admin/small_questions/edit/{{ $question->id }}">設問名を編集</a>
+                            <a href="/admin/small_questions/delete/{{ $question->id }}">設問を削除</a>
                         </div>
                     </div>
                 @endforeach
                 <input type="hidden" id="list-ids" name="list-ids" />
                 <div class="list_content">
                     <div class="list_quiz">
-                        <a href="/admin/big_questions/add">＋新しいタイトルを追加</a>
+                        <a href="/admin/small_questions/add/{{ $big_question->id }}">＋設問を追加</a>
                     </div>
                     <div class="list_actions">
                         <button id="submit">更新</button>
                     </div>
+                </div>
+                <div class="list_content">
+                    <a href="/admin/big_questions">大問の一覧に戻る</a>
                 </div>
             </div>
         </div>
@@ -45,6 +49,3 @@
 </body>
 
 </html>
-
-
-
