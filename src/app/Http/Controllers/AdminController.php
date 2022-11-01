@@ -150,9 +150,20 @@ class AdminController extends Controller
         // 選択肢を表示
         $choices = Choice::where('question_id', '=', $question_id)->get();
 
-        return view('admin.choices.list', compact('question','choices'));
+        return view('admin.choices.list', compact('question', 'choices'));
     }
 
+    public function edit_choice(Request $request, $id)
+    {
+        $choices = Choice::find($id);
+        return view('admin.choices.edit', compact('choices', 'id'));
+    }
 
-
+    public function update_choice(Request $request, $id)
+    {
+        $choices = Choice::find($id);
+        $choices->name = $request->input('name');
+        $choices->save();
+        return redirect('/admin/choices/list/' . $choices->question_id);
+    }
 }

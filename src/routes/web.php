@@ -44,8 +44,11 @@ Route::post('/admin/small_questions/delete/{id}', 'AdminController@remove_questi
 
 // 編集画面用　選択肢
 Route::get('/admin/choices/list/{id}', 'AdminController@choice');
-Route::get('/admin/choices/add', 'AdminController@add_choice');
-Route::post('/admin/choices/add', 'AdminController@create_choice');
+
+Route::get('/admin/choices/edit/{id}', 'AdminController@edit_choice');
+Route::post('/admin/choices/edit/{id}', 'AdminController@update_choice')->name('choice_update');
+
+
 
 
 
